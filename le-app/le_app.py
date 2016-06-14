@@ -3,7 +3,8 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('/.well-known/acme-request/<path:path>')
+@app.route('/', defaults={'path': ''})
+@app.route('/.well-known/acme-challenge/<path:path>')
 def hello(path):
     return 'Hello from Fake-LetsEncrypt @ {}!'.format(path)
 
