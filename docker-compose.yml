@@ -1,0 +1,19 @@
+version: '2'
+services:
+        my-app:
+                build: py-app
+        le-app:
+                build: le-app
+
+        proxy:
+                image: nginx
+
+                volumes:
+                        - ./nginx.conf:/etc/nginx/nginx.conf:ro
+
+                ports:
+                        - 8888:80
+
+                depends_on:
+                        - my-app
+                        - le-app
